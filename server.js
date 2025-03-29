@@ -38,3 +38,16 @@ app.use('/api/rsvp', rsvpRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+mongoose.connection.on('connected', () => {
+  console.log('MongoDB connected successfully!');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error:', err);
+});
+
+app.use((err, req, res, next) => {
+  console.error('Internal Server Error:', err);
+  res.status(500).json({ message: "Something went wrong!", error: err.message });
+});
