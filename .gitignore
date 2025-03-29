@@ -1,0 +1,31 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log
+.env
+
+# Logs
+logs
+*.log
+logs/*.log
+debug.log
+error.log
+
+# Output folders
+dist/
+build/
+
+# Database files (if any)
+*.sqlite
+*.sqlite3
+*.db
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE and Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
