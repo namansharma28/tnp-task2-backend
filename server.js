@@ -8,10 +8,13 @@ const cors = require('cors'); // Import cors
 dotenv.config();
 
 const app = express();
-
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://tnp-task2-rsvp.vercel.app"
+];
 // CORS Setup: Update the origin to match your React app's URL
 const corsOptions = {
-  origin: 'http://localhost:5173', // Change this to the correct URL of your frontend
+  origin: allowedOrigins, // Change this to the correct URL of your frontend
   methods: ['GET', 'POST'],       // Allow GET and POST methods
   allowedHeaders: ['Content-Type'], // Allow Content-Type header
 };
