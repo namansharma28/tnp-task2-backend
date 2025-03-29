@@ -19,7 +19,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type'], // Allow Content-Type header
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware with the specified options
+app.use(cors(   )); // Apply CORS middleware with the specified options
 
 app.use(bodyParser.json());
 
