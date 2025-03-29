@@ -74,26 +74,27 @@ exports.checkOutUser = async (req, res) => {
 };
 
 // Send Email Confirmation
-const sendConfirmationEmail = async (toEmail, name) => {
+const sendConfirmationEmail = (toEmail, name) => {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'gmail',  // You can use any email service (Gmail is just an example)
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      user: process.env.EMAIL_USER,  // Add your email from the .env file
+      pass: process.env.EMAIL_PASS   // Add your email password from the .env file
     }
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: toEmail,
-    subject: 'RSVP Confirmation',
-    text: `Hello ${name},\n\nThank you for registering for our Speaker Session. We are excited to have you join us!`
+    from: process.env.EMAIL_USER,   // Your email address
+    to: toEmail,                    // The user's email address
+    subject: 'RSVP Confirmation',   // The email subject
+    text: `Hello ${name},\n\nThank you for registering for our Speaker Session. We are excited to have you join us!`  // The email content
   };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Confirmation email sent: " + info.response);
-  } catch (error) {
-    console.error("Error sending email: ", error);
-  }
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log("Error sending email: ", error);
+    } else {
+      console.log("Confirmation email sent: " + info.response);
+    }
+  });
 };
